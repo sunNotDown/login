@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册失败</title>
+    <link rel="shortcut icon" href="img/ico/talk.ico" type="image/x-icon">
+    <style>
+        *
+        {
+            user-select: none;
+        }
+
+        body
+        {
+            background-color: #f4f9fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1
+        {
+            color: #007bff;
+            text-align: center;
+        }
+
+        p,
+        span
+        {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        p
+        {
+            min-width: 300px;
+        }
+
+        .text
+        {
+            position: absolute;
+            left: 50%;
+            margin-top: 100px;
+        }
+
+        .tip
+        {
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5);
+            font-size: 18px;
+        }
+
+        .context
+        {
+            background-color: #cde8ff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+        }
+
+        .restTimeDiv
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>注册失败！</h1>
+    <div class="text">
+        <p class="tip">错误信息:<span class="errorMessage">用户名已存在</span></p><br><br>
+        <p class="restTimeDiv"></p>
+    </div>
+</div>
+<script>
+    /* 根据账号长度进行定位 */
+    const texts = document.querySelector('.text');
+    texts.style.marginLeft = -(texts.clientWidth / 2) + 'px'
+
+    // 自动跳转
+    let restTime = 5;
+    const restTimeDiv = document.querySelector('.restTimeDiv')
+    setInterval(() =>
+    {
+        restTime--;
+        console.log(restTime)
+        restTimeDiv.innerHTML = restTime + '秒后自动返回登录页面';
+        if (restTime <= 0)
+        {
+            window.location.href = `login.html`;
+        }
+    }, 1000);
+
+    //转码太麻烦了先写死得了
+    // // 从 URL 参数中获取名为 'error' 的值
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const error = urlParams.get('error');
+    // if (error)
+    // {
+    //     document.getElementById('error').textContent = error;
+    // }
+
+</script>
+</body>
+
+</html>

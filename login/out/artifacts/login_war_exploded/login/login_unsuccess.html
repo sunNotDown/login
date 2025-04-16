@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录失败</title>
+    <link rel="shortcut icon" href="img/ico/talk.ico" type="image/x-icon">
+    <style>
+        * {
+            user-select: none;
+        }
+
+        body {
+            background-color: #f4f9fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        p,
+        span {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        p {
+            min-width: 300px;
+        }
+
+        .text {
+            position: absolute;
+            left: 50%;
+            margin-top: 100px;
+        }
+
+        .tip {
+            padding: 10px;
+            margin-left: -30px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5);
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>登录失败！</h1>
+    <div class="text">
+        <span class="tip">错误信息:<span id="errorMessage">用户名或密码错误</span></span><br><br>
+        <span class="restTimeDiv"></span>
+    </div>
+</div>
+<script>
+    /* 根据元素宽度进行定位 */
+    const texts = document.querySelector('.text');
+    texts.style.marginLeft = -(texts.clientWidth / 2) + 'px'
+
+    // 通过url传递的方式获取用户名和密码
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    const password = urlParams.get('password');
+
+    // 自动跳转
+    let restTime = 3;
+    const restTimeDiv = document.querySelector('.restTimeDiv')
+    setInterval(() => {
+        restTime--;
+        console.log(restTime)
+        restTimeDiv.innerHTML = restTime + '秒后自动返回登录页面';
+        if (restTime <= 0) {
+            window.location.href = "login.html?username="+username+"&password="+password;
+        }
+    }, 1000);
+</script>
+</body>
+
+</html>

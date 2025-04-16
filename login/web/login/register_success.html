@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>注册成功</title>
+    <link rel="shortcut icon" href="img/ico/talk.ico" type="image/x-icon">
+    <style>
+        *
+        {
+            user-select: none;
+        }
+
+        body
+        {
+            background-color: #f4f9fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1
+        {
+            color: #007bff;
+            text-align: center;
+        }
+
+        p,
+        span
+        {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        p
+        {
+            min-width: 300px;
+        }
+
+        .text
+        {
+            position: absolute;
+            left: 50%;
+            margin-top: 100px;
+        }
+
+        .tip
+        {
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5);
+            font-size: 18px;
+        }
+
+        .context
+        {
+            background-color: #cde8ff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+        }
+
+        .goLogin
+        {
+            background-color: #55aaff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            text-align: center;
+            width: 150px;
+            margin-left: -75px;
+            position: absolute;
+            top: 430px;
+            left: 50%;
+            cursor: pointer;
+        }
+
+        .goLogin:hover
+        {
+            transition: all 0.2s ease;
+            background: linear-gradient(to right, #55aaff, #007bff);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>注册成功！</h1>
+    <div class="text">
+        <span class="tip">请牢记你的密码：</span><br><br>
+        <p class="context">账号: <span class="username"></span></p>
+        <p class="context">密码: <span class="password"></span></p>
+    </div>
+    <div class="goLogin">去登录</div>
+</div>
+<script>
+    // 通过url传递的方式获取用户名和密码
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const username = urlParams.get('username');
+    document.querySelector('.username').textContent = username;
+
+    const password = urlParams.get('password');
+    document.querySelector('.password').textContent = password;
+
+
+    /* 根据账号长度进行定位 */
+    const texts = document.querySelector('.text');
+    texts.style.marginLeft = -(texts.clientWidth / 2) + 'px'
+
+    /* 绑定跳转按钮 */
+    GoTologin = document.querySelector('.goLogin')
+    GoTologin.onclick = function()
+    {
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+
+</html>

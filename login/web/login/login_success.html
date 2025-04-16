@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录成功</title>
+    <link rel="shortcut icon" href="img/ico/talk.ico" type="image/x-icon">
+    <style>
+        * {
+            user-select: none;
+        }
+
+        body {
+            background-color: #f4f9fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        p,
+        span {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        p {
+            min-width: 300px;
+        }
+
+        .text {
+            position: absolute;
+            left: 50%;
+        }
+
+        .context {
+            background-color: #cde8ff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+        }
+        .tip {
+            padding: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>登录成功！</h1>
+    <div class="text">
+        <p class="context">欢迎，用户 <span id="username"></span></p>
+        <p class="tip">登陆中...</p>
+    </div>
+</div>
+<script>
+    // 从 URL 参数中获取名为 'username' 的值
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
+
+    // 根据元素宽度进行水平居中
+    const texts = document.querySelector('.text');
+    texts.style.marginLeft = -(texts.clientWidth / 2) + 'px';
+
+    // 自动跳转
+    setTimeout(() => {
+        window.location.href = `../talk/chat.html?username=${username}`;
+    }, 1000);
+</script>
+
+<!--其实也可以省略这个文件，直接从loginServlet.java跳转到chat.html，然后登陆成功的信息作为弹窗显示3秒后淡去（可以参考登录时的验证动画）-->
+</body>
+
+</html>
